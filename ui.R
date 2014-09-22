@@ -15,16 +15,17 @@ shinyUI(fluidPage(
   
   
   fluidRow(style = "padding-bottom: 20px;",
-    column(2, selectInput('Xhome', 'Nation:',selectize = TRUE,c("All",  unique(as.character(nym.2002$home))))),
-    column(3, uiOutput("filter1")),
-  
-   
+           
+           column(2,selectInput("xhome", label = h4("Select a Nation"), 
+                       choices = c("All", unique(as.character(nym.2002$home))), selected = "All")),
+           column(2,selectInput("xgen", label = h4("Select a Gender"), 
+                                choices = c("All", unique(as.character(nym.2002$gender))), selected = "All")),  
   
   # Sidebar with a slider input 
   sidebarLayout(
     sidebarPanel(
       sliderInput("ag",
-                  "Age on day of race:",
+                  label = h4("Age on day of race:"),
                   min = min (nym.2002$age),
                   max = max (nym.2002$age),
                   value = mean (nym.2002$age))
